@@ -416,7 +416,7 @@ void btSequentialImpulseConstraintSolverMt::internalCollectContactManifoldCached
 		{
 			btManifoldPoint& cp = manifold->getContactPoint(j);
 
-			if (cp.getDistance() <= manifold->getContactProcessingThreshold())
+			if (cp.getDistance() <= manifold->getContactProcessingThreshold() && !(cp.m_contactPointFlags & btContactPointFlags::BT_CONTACT_FLAG_CANCELLED))
 			{
 				cachedInfo->contactPoints[iContact] = &cp;
 				cachedInfo->contactHasRollingFriction[iContact] = (cp.m_combinedRollingFriction > 0.f);
